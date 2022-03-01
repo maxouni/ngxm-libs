@@ -1,0 +1,55 @@
+<div class="ngxm-input__group mb-0">
+  <label
+    class="ngxm-input__label"
+    *ngIf="label"
+    [class.mb-1]="!description"
+    [class.mb-0]="description"
+    [attr.for]="identifier"
+    >{{ label }}<sup *ngIf="required === true">*</sup>
+  </label>
+
+  <input
+    class="ngxm-input"
+    #input
+    [ngClass]="className ? className : ''"
+    [attr.maxLength]="maxLength ? maxLength : null"
+    [attr.disabled]="control?.disabled ? true : null"
+    [attr.id]="identifier"
+    [attr.placeholder]="placeholder"
+    [attr.type]="type"
+    [pattern]="pattern"
+    [class.ngxm-input--invalid]="
+      control?.touched && !control?.pristine && control?.invalid
+    "
+    [class.is-valid]="changed && control?.valid"
+    [class.ngxm-input--password-control]="enableEye"
+    (change)="onChange($event)"
+    (blur)="onBlur()"
+    (keyup)="onKeyUp($event)"
+  />
+
+  <div class="ngxm-input__eye" *ngIf="enableEye">
+    <span
+      class="ngxm-input__eye-icon ngxm-input__eye-icon--off"
+      *ngIf="type === 'password'"
+      (click)="type = 'text'"
+    ></span>
+    <span
+      class="ngxm-input__eye-icon ngxm-input__eye-icon--on"
+      *ngIf="type === 'text'"
+      (click)="type = 'password'"
+    ></span>
+  </div>
+
+  <div
+    class="ngxm-input__invalid-feedback"
+    *ngIf="!disableErrorMessage && !this.control?.disabled"
+    [@visibilityChanged]="changed && control?.valid"
+  >
+    <span class="ngxm-input__invalid-feedback-box">error message</span>
+  </div>
+
+  <span class="ngxm-input__description" *ngIf="description">
+    <small [innerHTML]="description" [@visibilityChanged]="changed && !control?.valid"></small>
+  </span>
+</div>

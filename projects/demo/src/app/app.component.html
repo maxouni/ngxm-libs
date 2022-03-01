@@ -1,0 +1,56 @@
+<div class="demo-params">
+  <div class="demo-params__item">
+    <label>Type</label>
+    <select [(ngModel)]="paramsType">
+      <option>text</option>
+      <option>number</option>
+      <option>password</option>
+      <option>email</option>
+      <option>search</option>
+    </select>
+  </div>
+
+  <div class="demo-params__item">
+    <label>Required</label>
+    <select [(ngModel)]="paramsRequired">
+      <option>true</option>
+      <option>false</option>
+    </select>
+  </div>
+
+  <div class="demo-params__item">
+    <label>Disabled</label>
+    <select [(ngModel)]="paramsDisabled">
+      <option>true</option>
+      <option>false</option>
+    </select>
+  </div>
+
+  <div class="demo-params__item">
+    <label>Label text</label>
+    <input [(ngModel)]="paramsLabel" />
+  </div>
+
+  <div class="demo-params__item">
+    <label>Description text</label>
+    <textarea [(ngModel)]="paramsDescription"></textarea>
+  </div>
+</div>
+
+<form [formGroup]="form" class="demo-box">
+  <h1>Input variants</h1>
+  <ngmx-input
+    [type]="paramsType"
+    [required]="true"
+    [label]="paramsLabel"
+    [description]="paramsDescription"
+    [formControlName]="'testControl'"
+  >
+  </ngmx-input>
+
+  <pre *ngIf="testControl">
+Test control disabled: {{ testControl.disabled }}
+Test control status: {{ testControl.status }}
+</pre
+  >
+</form>

@@ -1,0 +1,39 @@
+:host {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto';
+}
+
+.demo-box {
+  width: 650px;
+}
+
+.demo-params{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background: #ced4da;
+
+  &__item {
+    width: 100%;
+    padding: 7px 25px;
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+    }
+  }
+}
