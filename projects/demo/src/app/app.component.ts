@@ -12,10 +12,12 @@ export class AppComponent {
 
   paramsType: NgxmInputType = 'text';
   paramsRequired: string = 'false';
+  paramsShowEye: string = 'false';
 
   get paramsDisabled(): 'false' | 'true' {
     return 'false';
   }
+
   set paramsDisabled(flag: 'false' | 'true') {
     if (flag === 'true') {
       this.testControl?.disable();
@@ -23,7 +25,9 @@ export class AppComponent {
       this.testControl?.enable();
     }
   }
+
   paramsLabel: string = 'Test input control';
+  paramsError: string = 'Error text';
   paramsDescription: string = 'Test input control description';
 
   readonly form: FormGroup = this.fb.group(

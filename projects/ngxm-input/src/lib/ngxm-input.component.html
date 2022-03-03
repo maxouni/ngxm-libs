@@ -19,9 +19,9 @@
     [attr.type]="type"
     [pattern]="pattern"
     [class.ngxm-input--invalid]="
-      control?.touched && !control?.pristine && control?.invalid
+      blured && !control?.pristine && control?.invalid
     "
-    [class.is-valid]="changed && control?.valid"
+    [class.is-valid]="blured && control?.valid"
     [class.ngxm-input--password-control]="enableEye"
     (change)="onChange($event)"
     (blur)="onBlur()"
@@ -40,16 +40,15 @@
       (click)="type = 'password'"
     ></span>
   </div>
-
   <div
     class="ngxm-input__invalid-feedback"
     *ngIf="!disableErrorMessage && !this.control?.disabled"
-    [@visibilityChanged]="changed && control?.valid"
+    [@visibilityChanged]="blured && control?.invalid && control?.dirty"
   >
-    <span class="ngxm-input__invalid-feedback-box">error message</span>
+    <span class="ngxm-input__invalid-feedback-box">{{error}}</span>
   </div>
 
   <span class="ngxm-input__description" *ngIf="description">
-    <small [innerHTML]="description" [@visibilityChanged]="changed && !control?.valid"></small>
+    <small [innerHTML]="description" [@visibilityChanged]="(control?.valid && blured) || !blured"></small>
   </span>
 </div>
