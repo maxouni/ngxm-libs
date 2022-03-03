@@ -45,8 +45,10 @@ import {
   ],
   animations: [
     trigger('visibilityChanged', [
-      state('true', style({ opacity: 0 })),
-      state('false', style({ opacity: 1 })),
+      state('null', style({ opacity: 0 })),
+      state('undefined', style({ opacity: 0 })),
+      state('false', style({ opacity: 0 })),
+      state('true', style({ opacity: 1 })),
       transition('*=>*', animate('300ms')),
     ]),
   ],
@@ -69,6 +71,10 @@ export class NgxmInputComponent implements OnChanges, OnDestroy, AfterViewInit {
    * Лейбл
    */
   @Input() label: string | undefined;
+  /**
+   * Текст ошибки
+   */
+  @Input() error: string | undefined;
   /**
    * Тип поля text | number | password | search
    */
@@ -108,7 +114,7 @@ export class NgxmInputComponent implements OnChanges, OnDestroy, AfterViewInit {
   /**
    * Флаг изменения контрола
    */
-  public changed: boolean | undefined;
+  public blured: boolean | undefined;
 
   private readonly destroy$: Subject<unknown> = new Subject<unknown>();
 
@@ -163,8 +169,7 @@ export class NgxmInputComponent implements OnChanges, OnDestroy, AfterViewInit {
   }
 
   onBlur() {
-    this.changed = true;
-    this.touchedChange('');
+    this.blured = true;
   }
 
   onKeyUp(ev: KeyboardEvent) {
@@ -182,10 +187,6 @@ export class NgxmInputComponent implements OnChanges, OnDestroy, AfterViewInit {
   touchedChange = (_: string) => {};
 
   writeValue(value: NgxmInputValue): void {
-    if (value) {
-      this.changed = true;
-    }
-
     this.patchValue(value);
   }
 
