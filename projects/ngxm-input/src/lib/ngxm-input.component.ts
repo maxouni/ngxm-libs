@@ -88,6 +88,14 @@ export class NgxmInputComponent implements OnChanges, OnDestroy, AfterViewInit {
    */
   @Input() enableEye: boolean | undefined;
   /**
+   * Показать значок "лупы" для поиска
+   */
+  @Input() enableLoop: boolean | undefined;
+  /**
+   * Расположение иконок
+   */
+  @Input() iconRtl: 'left' | 'right' = 'right';
+  /**
    * Описание
    */
   @Input() description: string | undefined;

@@ -13,6 +13,7 @@ export class AppComponent {
   paramsType: NgxmInputType = 'text';
   paramsRequired: string = 'false';
   paramsShowEye: string = 'false';
+  paramsShowLoop: string = 'false';
 
   get paramsDisabled(): 'false' | 'true' {
     return 'false';

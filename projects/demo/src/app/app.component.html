@@ -27,6 +27,14 @@
   </div>
 
   <div class="demo-params__item">
+    <label>Show loop</label>
+    <select [(ngModel)]="paramsShowLoop">
+      <option>true</option>
+      <option>false</option>
+    </select>
+  </div>
+
+  <div class="demo-params__item">
     <label>Disabled</label>
     <select [(ngModel)]="paramsDisabled">
       <option>true</option>
@@ -53,6 +61,7 @@
 <form [formGroup]="form" class="demo-box">
   <h1>Example</h1>
   <ngmx-input
+    [enableLoop]="paramsShowLoop === 'true'"
     [enableEye]="paramsShowEye === 'true'"
     [error]="paramsError"
     [type]="paramsType"

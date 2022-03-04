@@ -1,4 +1,6 @@
-<div class="ngxm-input__group mb-0">
+<div
+  [class.ngxm-input__group--icon-left-rtl]="iconRtl === 'left'"
+  class="ngxm-input__group mb-0">
   <label
     class="ngxm-input__label"
     *ngIf="label"
@@ -22,11 +24,17 @@
       blured && !control?.pristine && control?.invalid
     "
     [class.is-valid]="blured && control?.valid"
-    [class.ngxm-input--password-control]="enableEye"
+    [class.ngxm-input--with-icon]="enableEye || enableLoop"
     (change)="onChange($event)"
     (blur)="onBlur()"
     (keyup)="onKeyUp($event)"
   />
+
+  <div class="ngxm-input__loop" *ngIf="enableLoop">
+    <span
+      class="ngxm-input__loop-icon"
+    ></span>
+  </div>
 
   <div class="ngxm-input__eye" *ngIf="enableEye">
     <span
