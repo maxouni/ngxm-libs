@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { NgxmInputType } from '../../../ngxm-input/src/lib/ngmx-input.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -42,5 +43,11 @@ export class AppComponent {
     return this.form.get('testControl');
   }
 
-  constructor(private fb: FormBuilder) {}
+  PATTERN_EMAIL =
+    `[a-z0-9!#$%&'*+/=?^_\`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_\`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?`;
+
+  constructor(private translate: TranslateService, private fb: FormBuilder) {
+    translate.setDefaultLang('en');
+    translate.use('en');
+  }
 }

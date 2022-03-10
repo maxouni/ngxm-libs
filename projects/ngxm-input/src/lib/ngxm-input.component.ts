@@ -5,6 +5,7 @@ import {
   Component,
   ElementRef,
   forwardRef,
+  Inject,
   Injector,
   Input,
   OnChanges,
@@ -23,10 +24,13 @@ import {
 import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import {
+  NGXM_INPUT_LIB_CONFIG,
+  NgxmInputConfig,
   NgxmInputType,
   NgxmInputValue,
   NgxmRequiredType,
 } from './ngmx-input.model';
+import { TranslateService } from "@ngx-translate/core";
 
 /**
  * Компонент input на основе CSS bootstrap
@@ -53,7 +57,7 @@ import {
     ]),
   ],
 })
-export class NgxmInputComponent implements OnChanges, OnDestroy, AfterViewInit {
+export class NgxmInputComponent implements OnDestroy, AfterViewInit {
   /**
    * Аттрибут ID
    */
@@ -128,9 +132,12 @@ export class NgxmInputComponent implements OnChanges, OnDestroy, AfterViewInit {
 
   @ViewChild('input', { static: true }) inputRef: ElementRef | undefined;
 
-  constructor(private injector: Injector, private cd: ChangeDetectorRef) {}
-
-  ngOnChanges(changes: SimpleChanges) {}
+  constructor(
+    @Inject(NGXM_INPUT_LIB_CONFIG) private ngxmInputConfig: NgxmInputConfig,
+    private injector: Injector,
+    private cd: ChangeDetectorRef,
+  ) {
+  }
 
   ngAfterViewInit(): void {
     const ngControl: NgControl = this.injector.get<any>(NgControl as any, null);
@@ -150,7 +157,7 @@ export class NgxmInputComponent implements OnChanges, OnDestroy, AfterViewInit {
           this.cd.markForCheck();
         });
     } else {
-      // console.warn('Input is not defined');
+      console.warn('Input is not defined');
     }
   }
 
@@ -160,6 +167,11 @@ export class NgxmInputComponent implements OnChanges, OnDestroy, AfterViewInit {
     } else {
       return value;
     }
+  }
+
+  private changeHandler(ev: Event | KeyboardEvent): void {
+    const target = ev.target as HTMLInputElement;
+    this.change(this.prepareValue(target.value));
   }
 
   patchValue(value: NgxmInputValue): void {
@@ -172,8 +184,7 @@ export class NgxmInputComponent implements OnChanges, OnDestroy, AfterViewInit {
   }
 
   onChange(ev: Event) {
-    const target = ev.target as HTMLInputElement;
-    this.change(this.prepareValue(target.value));
+    this.changeHandler(ev);
   }
 
   onBlur() {
@@ -181,8 +192,7 @@ export class NgxmInputComponent implements OnChanges, OnDestroy, AfterViewInit {
   }
 
   onKeyUp(ev: KeyboardEvent) {
-    const target = ev.target as HTMLInputElement;
-    this.change(target.value);
+    this.changeHandler(ev);
   }
 
   change(value: NgxmInputValue) {

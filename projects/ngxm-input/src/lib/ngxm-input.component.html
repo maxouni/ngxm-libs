@@ -1,11 +1,10 @@
 <div
   [class.ngxm-input__group--icon-left-rtl]="iconRtl === 'left'"
-  class="ngxm-input__group mb-0">
+  class="ngxm-input__group mb-0"
+>
   <label
     class="ngxm-input__label"
     *ngIf="label"
-    [class.mb-1]="!description"
-    [class.mb-0]="description"
     [attr.for]="identifier"
     >{{ label }}<sup *ngIf="required === true">*</sup>
   </label>
@@ -31,9 +30,7 @@
   />
 
   <div class="ngxm-input__loop" *ngIf="enableLoop">
-    <span
-      class="ngxm-input__loop-icon"
-    ></span>
+    <span class="ngxm-input__loop-icon"></span>
   </div>
 
   <div class="ngxm-input__eye" *ngIf="enableEye">
@@ -53,10 +50,15 @@
     *ngIf="!disableErrorMessage && !this.control?.disabled"
     [@visibilityChanged]="blured && control?.invalid && control?.dirty"
   >
-    <span class="ngxm-input__invalid-feedback-box">{{error}}</span>
+    <span class="ngxm-input__invalid-feedback-box">{{
+      error | ngxmInputValidation: control?.errors
+    }}</span>
   </div>
 
   <span class="ngxm-input__description" *ngIf="description">
-    <small [innerHTML]="description" [@visibilityChanged]="(control?.valid && blured) || !blured"></small>
+    <small
+      [innerHTML]="description"
+      [@visibilityChanged]="(control?.valid && blured) || !blured"
+    ></small>
   </span>
 </div>

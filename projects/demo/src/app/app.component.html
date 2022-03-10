@@ -61,6 +61,7 @@
 <form [formGroup]="form" class="demo-box">
   <h1>Example</h1>
   <ngmx-input
+    [pattern]="PATTERN_EMAIL"
     [enableLoop]="paramsShowLoop === 'true'"
     [enableEye]="paramsShowEye === 'true'"
     [error]="paramsError"
