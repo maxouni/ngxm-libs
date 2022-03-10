@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start:demo": "ng serve demo",
-    "build": "ng build --configuration production",
-    "watch": "ng build --watch --configuration development",
+    "build": "ng build ngxm-input --configuration production",
+    "publish": "npm run build && cd dist/ngxm-input && npm pack && npm publish",
     "test": "ng test"
   },
   "authors": [
@@ -21,6 +21,8 @@
     "@angular/platform-browser": "~13.1.0",
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
+    "@ngx-translate/core": "^14.0.0",
+    "@ngx-translate/http-loader": "^7.0.0",
     "bootstrap": "^5.1.3",
     "normalize.css": "^8.0.1",
     "rxjs": "~7.4.0",
