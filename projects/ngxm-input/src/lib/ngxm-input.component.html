@@ -29,11 +29,11 @@
     (keyup)="onKeyUp($event)"
   />
 
-  <div class="ngxm-input__loop" *ngIf="enableLoop">
+  <div class="ngxm-input__loop" *ngIf="enableLoop && type === 'search'">
     <span class="ngxm-input__loop-icon"></span>
   </div>
 
-  <div class="ngxm-input__eye" *ngIf="enableEye">
+  <div class="ngxm-input__eye" *ngIf="enableEye && (type === 'password' || type === 'text')">
     <span
       class="ngxm-input__eye-icon ngxm-input__eye-icon--off"
       *ngIf="type === 'password'"
