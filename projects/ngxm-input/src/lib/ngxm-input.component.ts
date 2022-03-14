@@ -33,7 +33,7 @@ import {
 import { TranslateService } from "@ngx-translate/core";
 
 /**
- * Компонент input на основе CSS bootstrap
+ * Html NGXM input component
  */
 @Component({
   selector: 'ngmx-input',
@@ -133,7 +133,6 @@ export class NgxmInputComponent implements OnDestroy, AfterViewInit {
   @ViewChild('input', { static: true }) inputRef: ElementRef | undefined;
 
   constructor(
-    @Inject(NGXM_INPUT_LIB_CONFIG) private ngxmInputConfig: NgxmInputConfig,
     private injector: Injector,
     private cd: ChangeDetectorRef,
   ) {

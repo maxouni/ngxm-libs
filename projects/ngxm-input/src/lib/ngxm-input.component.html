@@ -51,7 +51,7 @@
     [@visibilityChanged]="blured && control?.invalid && control?.dirty"
   >
     <span class="ngxm-input__invalid-feedback-box">{{
-      error | ngxmInputValidation: control?.errors
+      error | ngxmInputValidation: control?.errors | async
     }}</span>
   </div>
 

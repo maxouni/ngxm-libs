@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { NgxmInputType } from '../../../ngxm-input/src/lib/ngmx-input.model';
 import { TranslateService } from '@ngx-translate/core';
+import { NgxmInputService } from '../../../ngxm-input/src/lib/ngxm-input.service';
 
 @Component({
   selector: 'app-root',
@@ -43,11 +44,18 @@ export class AppComponent {
     return this.form.get('testControl');
   }
 
-  PATTERN_EMAIL =
-    `[a-z0-9!#$%&'*+/=?^_\`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_\`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?`;
+  PATTERN_EMAIL = `[a-z0-9!#$%&'*+/=?^_\`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_\`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?`;
 
-  constructor(private translate: TranslateService, private fb: FormBuilder) {
+  constructor(
+    private translate: TranslateService,
+    private fb: FormBuilder,
+    private ngxmInputService: NgxmInputService,
+  ) {
     translate.setDefaultLang('en');
-    translate.use('en');
+    translate.use('en').subscribe(() => {
+      ngxmInputService.errorTranslations = {
+        errorRequiredMsg: this.translate.instant('error.required'),
+      };
+    });
   }
 }
