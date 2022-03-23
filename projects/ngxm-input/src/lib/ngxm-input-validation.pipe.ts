@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
 import { NgxmInputService } from './ngxm-input.service';
-import { map, Observable } from 'rxjs';
+import { map } from "rxjs/operators";
+import { Observable } from "rxjs";
 
 @Pipe({
   name: 'ngxmInputValidation',
