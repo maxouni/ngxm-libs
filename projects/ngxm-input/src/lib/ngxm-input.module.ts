@@ -1,7 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { NgxmInputComponent } from './ngxm-input.component';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxmInputService } from './ngxm-input.service';
 import {
   NGXM_INPUT_LIB_CONFIG,
@@ -25,7 +24,7 @@ export const provideOptions = (
 
 @NgModule({
   declarations: [NgxmInputComponent, NgxmInputValidationPipe],
-  imports: [CommonModule, BrowserAnimationsModule],
+  imports: [CommonModule],
   exports: [NgxmInputComponent],
   providers: [NgxmInputService],
 })
