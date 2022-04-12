@@ -1,11 +1,25 @@
 {
+  "version": "0.0.7",
   "name": "ngxm-input",
-  "version": "0.0.6",
+  "description": "NgxmInput - simplify, open-source component for Angular.",
+  "homepage": "https://maxouni.github.io/ngxm-input/",
+  "bugs": {
+    "url" : "https://github.com/maxouni/ngxm-input/issues",
+    "email" : "max@mishin.io"
+  },
+  "author": {
+    "email": "max@mishin.io",
+    "name": "Max <maxouni> Mishin"
+  },
   "peerDependencies": {
     "@angular/common": "^13.1.0",
     "@angular/core": "^13.1.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maxouni/ngxm-input"
   }
 }
