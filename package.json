@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start:demo": "ng serve demo",
-    "build:demo": "ng build demo --configuration production",
+    "build:demo": "ng build demo --configuration production --base-href https://maxouni.github.io/ngxm-input/",
     "build": "ng build ngxm-input --configuration production",
     "publish": "npm run build && cd dist/ngxm-input && npm pack && npm publish",
     "test": "ng test"
