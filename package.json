@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start:demo": "ng serve demo",
+    "build:demo": "ng build demo --configuration production",
     "build": "ng build ngxm-input --configuration production",
     "publish": "npm run build && cd dist/ngxm-input && npm pack && npm publish",
     "test": "ng test"
@@ -30,7 +31,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~13.1.4",
+    "@angular-devkit/build-angular": "^13.3.2",
     "@angular/cli": "~13.1.2",
     "@angular/compiler-cli": "~13.1.0",
     "@types/jasmine": "~3.10.0",
