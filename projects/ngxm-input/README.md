@@ -1,24 +1,71 @@
-# NgxmInput
+# Ngxm-input - simplify, lightweight all in one input for Angular.
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.0.
+See [demo page](https://maxouni.github.io/ngxm-input/).
 
-## Code scaffolding
+##Features
 
-Run `ng generate component component-name --project ngxm-input` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngxm-input`.
-> Note: Don't forget to add `--project ngxm-input` or else it will be added to the default project in your `angular.json` file. 
+- [x] Correct behavior show errors message by default
+- [x] Password eye option
+- [x] Loop type search icon
+- [x] Style in css variables
+- [x] Reactive form support
+- [x] JS logic MaxLength
 
-## Build
+##Getting started
 
-Run `ng build ngxm-input` to build the project. The build artifacts will be stored in the `dist/` directory.
+###Step 1: Install ng-select:
 
-## Publishing
+**NPM**
+```npm
+npm i --save ngxm-input
+```
 
-After building your library with `ng build ngxm-input`, go to the dist folder `cd dist/ngxm-input` and run `npm publish`.
+###Step 2: Import the NgxmInputModule and angular FormsModule module:
+```ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxmInputModule } from '../../../ngxm-input/src/lib/ngxm-input.module';
 
-## Running unit tests
+@NgModule({
+declarations: [AppComponent],
+imports: [
+  BrowserModule,
+  BrowserAnimationsModule,
+  ReactiveFormsModule,
+  NgxmInputModule,
+  FormsModule,
+],
+bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
 
-Run `ng test ngxm-input` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**Usage**
+```angular2html
+<form [formGroup]="form" class="demo-box">
+  <h1>Example</h1>
+  <ngmx-input
+    [label]="'Demo input'"
+    [formControlName]="'testControl'"
+  >
+  </ngmx-input>
+</form>
+```
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## API
+### Inputs
+| Input   | Type                           | Default | Required | Description                                 |
+|---------|--------------------------------|---------| ----------- |---------------------------------------------|
+| [type]  | text, number, password, search | text    | no | Type input                                  |
+| [label] | string                         | null    | no | Label for input                             |
+| [pattern] | string, RegExp                 | null    | no | Pattern validation                          |
+| [enableLoop] | boolean                        | false   | no | Loop icon for search type input             |
+| [enableEye] | boolean                        | false   | no | Eye icon logic for password type input      |
+| [error] | string                         | null    | no | Error text                                  |
+| [required] | boolean                        | false   | no | Required attribute and show * in label flag |
+| [description] | string                         | null    | no | Description text                            |
+| [formControlName] | string                         | null    | no | Control form angular                        |
+| [placeholder] | string                         | null    | no | Placeholder text                            |
+| [maxLength] | number                         | null    | no | Max-length parameter                        |
+| [disableErrorMessage] | boolean                         | false   | no | Show/hide error message flag                |
