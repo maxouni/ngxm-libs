@@ -1,10 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
 //@import 'node_modules/bootstrap/scss/bootstrap';
-@import url('https://fonts.googleapis.com/css?family=Roboto:400;300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Ubuntu:wght@300;400&display=swap');
 @import "~normalize.css/normalize.css";
+
+$spacer-1: 15px;
+$default-border-radius: 8px;
 
 * {
   box-sizing: border-box;
 }
 
+html, body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
 
+.demo-box {
+  width: 650px;
+  margin: 15px 0 0 350px;
+}
+
+.demo-params{
+  position: absolute;
+  left: $spacer-1;
+  top: $spacer-1;
+  bottom: $spacer-1;
+  width: 300px;
+  background: #f2f8fe;
+  border-radius: $default-border-radius;
+  padding: $spacer-1 0;
+
+  &__item {
+    width: 100%;
+    padding: 7px 25px;
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+    }
+  }
+}
+
+pre {
+  background: #fafbf2;
+  padding: 30px;
+  margin-top: 45px;
+  line-height: 26px;
+  font-family: Arial;
+  border-radius: $default-border-radius;
+}

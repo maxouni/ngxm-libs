@@ -1,0 +1,95 @@
+<div class="demo-params">
+  <div class="demo-params__item">
+    <label>Type</label>
+    <select [(ngModel)]="paramsType">
+      <option>text</option>
+      <option>number</option>
+      <option>password</option>
+      <option>email</option>
+      <option>search</option>
+    </select>
+  </div>
+
+  <div class="demo-params__item">
+    <label>Required</label>
+    <select [(ngModel)]="paramsRequired">
+      <option>true</option>
+      <option>false</option>
+    </select>
+  </div>
+
+  <div class="demo-params__item">
+    <label>Show eye</label>
+    <select [(ngModel)]="paramsShowEye">
+      <option>true</option>
+      <option>false</option>
+    </select>
+  </div>
+
+  <div class="demo-params__item">
+    <label>Show loop</label>
+    <select [(ngModel)]="paramsShowLoop">
+      <option>true</option>
+      <option>false</option>
+    </select>
+  </div>
+
+  <div class="demo-params__item">
+    <label>Disabled</label>
+    <select [(ngModel)]="paramsDisabled">
+      <option>true</option>
+      <option>false</option>
+    </select>
+  </div>
+
+  <div class="demo-params__item">
+    <label>Label text</label>
+    <input [(ngModel)]="paramsLabel" />
+  </div>
+
+  <div class="demo-params__item">
+    <label>Description text</label>
+    <textarea [(ngModel)]="paramsDescription"></textarea>
+  </div>
+
+  <div class="demo-params__item">
+    <label>Error text</label>
+    <input [(ngModel)]="paramsError" />
+  </div>
+
+  <div class="demo-params__item">
+    <label>Patterns</label>
+    <select [(ngModel)]="paramsPattern">
+      <option>email</option>
+      <option>numeric</option>
+      <option>positiveNumeric</option>
+      <option>percent</option>
+      <option>words</option>
+    </select>
+  </div>
+</div>
+
+<form [formGroup]="form" class="demo-box">
+  <h1>Example for input</h1>
+  <ngmx-input
+    [pattern]="patterns[paramsPattern]"
+    [enableLoop]="paramsShowLoop === 'true'"
+    [enableEye]="paramsShowEye === 'true'"
+    [error]="paramsError"
+    [type]="paramsType"
+    [required]="paramsRequired === 'true'"
+    [label]="paramsLabel"
+    [description]="paramsDescription"
+    [formControlName]="'testControl'"
+  >
+  </ngmx-input>
+
+  <pre *ngIf="testControl">
+Test control disabled: {{ testControl.disabled }}
+Test control status: {{ testControl.status }}
+Test control dirty: {{ testControl.dirty }}
+Test control pristine: {{ testControl.pristine }}
+Test control touched: {{ testControl.touched }}
+</pre
+>
+</form>

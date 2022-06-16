@@ -139,6 +139,37 @@
           }
         }
       }
+    },
+    "ngxm-textarea": {
+      "projectType": "library",
+      "root": "projects/ngxm-textarea",
+      "sourceRoot": "projects/ngxm-textarea/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngxm-textarea/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngxm-textarea/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngxm-textarea/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngxm-textarea/src/test.ts",
+            "tsConfig": "projects/ngxm-textarea/tsconfig.spec.json",
+            "karmaConfig": "projects/ngxm-textarea/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngxm-input"

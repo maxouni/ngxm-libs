@@ -11,6 +11,7 @@ import {
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AppRoutingModule } from "./app.routing.module";
 
 export const createTranslateLoader = (http: HttpClient) => {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -19,12 +20,10 @@ export const createTranslateLoader = (http: HttpClient) => {
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    AppRoutingModule,
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
-    NgxmInputModule.forRoot(),
-    FormsModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {

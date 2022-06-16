@@ -1,0 +1,46 @@
+<div
+  class="ngxm-textarea__group mb-0"
+>
+  <label
+    class="ngxm-textarea__label"
+    *ngIf="label"
+    [attr.for]="identifier"
+    >{{ label }}<sup *ngIf="required === true">*</sup>
+  </label>
+
+  <textarea
+    class="ngxm-textarea"
+    #textarea
+    [ngStyle]="ngStyle"
+    [ngClass]="className ? className : ''"
+    [attr.maxLength]="maxLength ? maxLength : null"
+    [attr.disabled]="control?.disabled ? true : null"
+    [attr.id]="identifier"
+    [attr.placeholder]="placeholder"
+    [class.ngxm-textarea--invalid]="
+      blured && !control?.pristine && control?.invalid
+    "
+    [class.is-valid]="blured && control?.valid"
+    (change)="onChange($event)"
+    (blur)="onBlur()"
+    (keyup)="onKeyUp($event)"
+  >
+  </textarea>
+
+  <div
+    class="ngxm-textarea__invalid-feedback"
+    *ngIf="!disableErrorMessage && !this.control?.disabled"
+    [@visibilityChanged]="blured && control?.invalid && control?.dirty"
+  >
+    <span class="ngxm-textarea__invalid-feedback-box">{{
+      error | ngxmTextareaValidation: control?.errors | async
+    }}</span>
+  </div>
+
+  <span class="ngxm-textarea__description" *ngIf="description">
+    <small
+      [innerHTML]="description"
+      [@visibilityChanged]="(control?.valid && blured) || !blured"
+    ></small>
+  </span>
+</div>

@@ -1,7 +1,6 @@
 {
-  "version": "0.0.10",
-  "name": "ngxm-input",
-  "description": "NgxmInput - simplify, open-source input component for Angular.",
+  "name": "ngxm-textarea",
+  "description": "NgxmTextarea - simplify, open-source textarea component for Angular.",
   "homepage": "https://maxouni.github.io/ngxm-libs/",
   "bugs": {
     "url" : "https://github.com/maxouni/ngxm-libs/issues",
@@ -11,6 +10,7 @@
     "email": "max@mishin.io",
     "name": "Max <maxouni> Mishin"
   },
+  "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^13.1.0",
     "@angular/core": "^13.1.0"

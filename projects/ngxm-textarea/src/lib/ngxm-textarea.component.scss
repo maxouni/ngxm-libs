@@ -1,0 +1,85 @@
+::ng-deep :root {
+  --ngxm-textarea-color: #212529;
+  --ngxm-textarea-color-invalid: red;
+  --ngxm-textarea-color-disabled: rgba(0, 0, 0, .3);
+  --ngxm-textarea-border-color-invalid: red;
+  --ngxm-textarea-bg-color: #fff;
+  --ngxm-textarea-border-color: rgba(0, 0, 0, .4);
+  --ngxm-textarea-border-color-hover: rgba(0, 0, 0, .6);
+  --ngxm-textarea-border-color-focus: #ffcc00;
+  --ngxm-textarea-border-color-disabled: rgba(0, 0, 0, .3);
+}
+
+.ngxm-textarea {
+  outline: none !important;
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  min-height: 100px;
+  color: var(--ngxm-textarea-color);
+  background-color: var(--ngxm-textarea-bg-color);
+  background-clip: padding-box;
+  border: 1px solid var(--ngxm-textarea-border-color);
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  &:hover {
+    border-color: var(--ngxm-textarea-border-color-hover);
+  }
+
+  &:focus {
+    border-color: var(--ngxm-textarea-border-color-focus);
+  }
+
+  &--invalid,
+  &--invalid:focus,
+  &--invalid:hover {
+    border-color: var(--ngxm-textarea-border-color-invalid) !important;
+  }
+
+  &:disabled {
+    border-color: var(--ngxm-textarea-border-color-disabled) !important;
+    color: var(--ngxm-textarea-color-disabled) !important;
+  }
+
+  &__group {
+    margin-bottom: 25px;
+    position: relative;
+  }
+
+  &__label {
+    font-size: 0.875rem;
+    margin-bottom: 0.3125rem;
+    display: block;
+  }
+
+  &__description {
+    position: absolute;
+    left: 0;
+
+    small {
+      font-size: 0.75rem;
+      color: #999;
+    }
+  }
+
+  &__invalid-feedback {
+    margin-top: 0.25rem;
+    font-size: 12px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    color: var(--ngxm-textarea-color-invalid);
+    opacity: 0;
+
+    &-box {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 100%;
+      display: block;
+    }
+  }
+}

@@ -4,9 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start:demo": "ng serve demo",
-    "build:demo": "ng build demo --configuration production --base-href https://maxouni.github.io/ngxm-input/",
-    "build": "ng build ngxm-input --configuration production",
-    "publish": "npm run build && cd dist/ngxm-input && npm pack && npm publish",
+    "build:demo": "ng build demo --configuration production --base-href https://maxouni.github.io/ngxm-libs/",
+    "build:ngxm-input": "ng build ngxm-input --configuration production",
+    "build:ngxm-textarea": "ng build ngxm-textarea --configuration production",
+    "publish:ngxm-input": "npm run build:ngxm-input && cd dist/ngxm-input && npm pack && npm publish",
+    "publish:ngxm-textarea": "npm run build:ngxm-textarea && cd dist/ngxm-textarea && npm pack && npm publish",
     "test": "ng test"
   },
   "authors": [

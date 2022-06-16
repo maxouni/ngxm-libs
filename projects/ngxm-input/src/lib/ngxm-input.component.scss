@@ -1,11 +1,13 @@
 ::ng-deep :root {
   --ngxm-input-color: #212529;
   --ngxm-input-color-invalid: red;
+  --ngxm-input-color-disabled: rgba(0, 0, 0, .3);
   --ngxm-input-border-color-invalid: red;
   --ngxm-input-bg-color: #fff;
   --ngxm-input-border-color: rgba(0, 0, 0, 0.4);
   --ngxm-input-border-color-hover: rgba(0, 0, 0, 0.6);
   --ngxm-input-border-color-focus: #ffcc00;
+  --ngxm-input-border-color-disabled: rgba(0, 0, 0, .3);
 }
 
 .ngxm-input {
@@ -39,6 +41,11 @@
   &--invalid:focus,
   &--invalid:hover {
     border-color: var(--ngxm-input-border-color-invalid) !important;
+  }
+
+  &:disabled {
+    border-color: var(--ngxm-input-border-color-disabled) !important;
+    color: var(--ngxm-input-color-disabled) !important;
   }
 
   &__group {

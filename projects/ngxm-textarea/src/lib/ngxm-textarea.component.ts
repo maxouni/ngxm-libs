@@ -11,6 +11,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { NgxmRequiredType, NgxmTextareaValue } from './ngmx-textarea.model';
 import {
   animate,
   state,
@@ -18,26 +21,19 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import {
-  NgxmInputType,
-  NgxmInputValue,
-  NgxmRequiredType,
-} from './ngmx-input.model';
 
 /**
- * Html NGXM input component
+ * Html NGXM textarea component
  */
 @Component({
-  selector: 'ngmx-input',
-  templateUrl: './ngxm-input.component.html',
-  styleUrls: ['./ngxm-input.component.scss'],
+  selector: 'ngxm-textarea',
+  templateUrl: './ngxm-textarea.component.html',
+  styleUrls: ['./ngxm-textarea.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => NgxmInputComponent),
+      useExisting: forwardRef(() => NgxmTextareaComponent),
       multi: true,
     },
   ],
@@ -51,20 +47,16 @@ import {
     ]),
   ],
 })
-export class NgxmInputComponent implements OnDestroy, AfterViewInit {
+export class NgxmTextareaComponent implements OnDestroy, AfterViewInit {
   /**
    * Аттрибут ID
    */
   @Input() identifier: string =
-    'c__' + Math.random().toString().replace('.', '');
+    't__' + Math.random().toString().replace('.', '');
   /**
    * Обязательный
    */
   @Input() required: NgxmRequiredType | undefined;
-  /**
-   * Паттерн для валидации по регулярному выражению
-   */
-  @Input() pattern: string | RegExp | null = null;
   /**
    * Лейбл
    */
@@ -74,25 +66,9 @@ export class NgxmInputComponent implements OnDestroy, AfterViewInit {
    */
   @Input() error: string | undefined;
   /**
-   * Тип поля text | number | password | search
-   */
-  @Input() type: NgxmInputType = 'text';
-  /**
    * Значение плейсхолдера
    */
   @Input() placeholder: string | undefined;
-  /**
-   * Показать значок "глаз" для пароля
-   */
-  @Input() enableEye: boolean | undefined;
-  /**
-   * Показать значок "лупы" для поиска
-   */
-  @Input() enableLoop: boolean | undefined;
-  /**
-   * Расположение иконок
-   */
-  @Input() iconRtl: 'left' | 'right' = 'right';
   /**
    * Описание
    */
@@ -106,7 +82,7 @@ export class NgxmInputComponent implements OnDestroy, AfterViewInit {
    */
   @Input() className: string | undefined;
   /**
-   * Максимальная длина поля
+   * Максимальная длина значения поля
    */
   @Input() maxLength: number | undefined;
   /**
@@ -116,20 +92,31 @@ export class NgxmInputComponent implements OnDestroy, AfterViewInit {
   /**
    * Контрол формы
    */
-  public control: FormControl | null = null;
+  control: FormControl | null = null;
   /**
    * Флаг изменения контрола
    */
-  public blured: boolean | undefined;
+  blured: boolean | undefined;
+  /**
+   * Style textarea object
+   */
+  ngStyle: {
+    [klass: string]: any;
+  } | null = {};
 
   private readonly destroy$: Subject<unknown> = new Subject<unknown>();
 
-  @ViewChild('input', { static: true }) inputRef: ElementRef | undefined;
+  @ViewChild('textarea', { static: true }) ref: ElementRef | undefined;
 
-  constructor(
-    private injector: Injector,
-    private cd: ChangeDetectorRef,
-  ) {
+  constructor(private injector: Injector, private cd: ChangeDetectorRef) {}
+
+  /**
+   * Минимальная высота поля
+   */
+  @Input() set minHeight(minHeight: number | undefined) {
+    if (minHeight) {
+      this.ngStyle = { ...this.ngStyle, ...{ 'min-height': minHeight + 'px' } };
+    }
   }
 
   ngAfterViewInit(): void {
@@ -150,12 +137,12 @@ export class NgxmInputComponent implements OnDestroy, AfterViewInit {
           this.cd.markForCheck();
         });
     } else {
-      console.warn('Input is not defined');
+      console.warn('Textarea is not defined');
     }
   }
 
-  private prepareValue(value: NgxmInputValue): string {
-    if (this.type === 'text' && this.maxLength) {
+  private prepareValue(value: NgxmTextareaValue): string {
+    if (this.maxLength) {
       return value.substring(0, this.maxLength);
     } else {
       return value;
@@ -167,9 +154,9 @@ export class NgxmInputComponent implements OnDestroy, AfterViewInit {
     this.change(this.prepareValue(target.value));
   }
 
-  patchValue(value: NgxmInputValue): void {
-    if (this.inputRef) {
-      this.inputRef.nativeElement.value = this.prepareValue(value);
+  patchValue(value: NgxmTextareaValue): void {
+    if (this.ref) {
+      this.ref.nativeElement.value = this.prepareValue(value);
     }
     setTimeout(() => {
       this.cd.markForCheck();
@@ -188,7 +175,7 @@ export class NgxmInputComponent implements OnDestroy, AfterViewInit {
     this.changeHandler(ev);
   }
 
-  change(value: NgxmInputValue) {
+  change(value: NgxmTextareaValue) {
     this.cd.markForCheck();
     this.propagateChange(value);
   }
@@ -197,7 +184,7 @@ export class NgxmInputComponent implements OnDestroy, AfterViewInit {
 
   touchedChange = (_: string) => {};
 
-  writeValue(value: NgxmInputValue): void {
+  writeValue(value: NgxmTextareaValue): void {
     this.patchValue(value);
   }
 

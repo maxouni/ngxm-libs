@@ -1,12 +1,10 @@
-# Ngxm-input - simplify, lightweight all in one input for Angular.
+# Ngxm-textarea - simplify, lightweight textarea for Angular.
 
-See [demo page](https://maxouni.github.io/ngxm-input/).
+See [demo page](https://maxouni.github.io/ngxm-libs/ngxm-input/).
 
 ##Features
 
 - [x] Correct behavior show errors message by default
-- [x] Password eye option
-- [x] Loop type search icon
 - [x] Style in css variables
 - [x] Reactive form support
 - [x] JS logic MaxLength
@@ -17,15 +15,15 @@ See [demo page](https://maxouni.github.io/ngxm-input/).
 
 **NPM**
 ```npm
-npm i --save ngxm-input
+npm i --save ngxm-textarea
 ```
 
-###Step 2: Import the NgxmInputModule and angular FormsModule module:
+###Step 2: Import the NgxmTextareaModule and angular FormsModule module:
 ```ts
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxmInputModule } from '../../../ngxm-input/src/lib/ngxm-input.module';
+import { NgxmTextareaModule } from '../../../ngxm-textarea/src/lib/ngxm-textarea.module';
 
 @NgModule({
 declarations: [AppComponent],
@@ -33,7 +31,7 @@ imports: [
   BrowserModule,
   BrowserAnimationsModule,
   ReactiveFormsModule,
-  NgxmInputModule,
+  NgxmTextareaModule,
   FormsModule,
 ],
 bootstrap: [AppComponent],
@@ -45,11 +43,11 @@ export class AppModule {}
 ```angular2html
 <form [formGroup]="form" class="demo-box">
   <h1>Example</h1>
-  <ngmx-input
-    [label]="'Demo input'"
+  <ngmx-textarea
+    [label]="'Demo textarea'"
     [formControlName]="'testControl'"
   >
-  </ngmx-input>
+  </ngmx-textarea>
 </form>
 ```
 
@@ -57,11 +55,7 @@ export class AppModule {}
 ### Inputs
 | Input   | Type                           | Default | Required | Description                                 |
 |---------|--------------------------------|---------| ----------- |---------------------------------------------|
-| [type]  | text, number, password, search | text    | no | Type input                                  |
 | [label] | string                         | null    | no | Label for input                             |
-| [pattern] | string, RegExp                 | null    | no | Pattern validation                          |
-| [enableLoop] | boolean                        | false   | no | Loop icon for search type input             |
-| [enableEye] | boolean                        | false   | no | Eye icon logic for password type input      |
 | [error] | string                         | null    | no | Error text                                  |
 | [required] | boolean                        | false   | no | Required attribute and show * in label flag |
 | [description] | string                         | null    | no | Description text                            |
