@@ -1,6 +1,6 @@
 {
-  "name": "ngxm-input",
-  "version": "0.0.3",
+  "name": "ngxm-libs",
+  "version": "0.0.5",
   "scripts": {
     "ng": "ng",
     "start:demo": "ng serve demo",
