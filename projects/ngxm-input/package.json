@@ -1,8 +1,8 @@
 {
-  "version": "0.0.10",
+  "version": "0.0.11",
   "name": "ngxm-input",
   "description": "NgxmInput - simplify, open-source input component for Angular.",
-  "homepage": "https://maxouni.github.io/ngxm-libs/",
+  "homepage": "https://maxouni.github.io/ngxm-libs/ngxm-input/",
   "bugs": {
     "url" : "https://github.com/maxouni/ngxm-libs/issues",
     "email" : "max@mishin.io"
