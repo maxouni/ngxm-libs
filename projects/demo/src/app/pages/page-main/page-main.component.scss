@@ -15,7 +15,7 @@ h1 {
 
   &:before {
     position: absolute;
-    background: url('/assets/cocktail.svg');
+    background: url('./assets/cocktail.svg');
     content: '';
     display: block;
     left: -40px;
