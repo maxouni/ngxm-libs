@@ -13,6 +13,9 @@ MIT
 @angular/platform-browser
 MIT
 
+@angular/router
+MIT
+
 @ngx-translate/core
 MIT
 
@@ -20,6 +23,8 @@ MIT
 MIT
 
 ngxm-input
+
+ngxm-textarea
 
 rxjs
 Apache-2.0
